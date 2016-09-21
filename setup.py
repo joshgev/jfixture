@@ -22,4 +22,11 @@ setup(
     ],
     keywords='example mysql orm',
     packages=find_packages(),
-    install_requires=['mysqlclient', 'nose', 'git+git://github.com/joshgev/simpleorm'])
+    install_requires=[
+        'mysqlclient',
+        'nose',
+        'simpleorm'],
+    dependency_links= [
+        "git+git://github.com/joshgev/simpleorm"
+    ]
+)
