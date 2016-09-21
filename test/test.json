@@ -1,0 +1,49 @@
+{
+  "@User, $user1": {
+    "first_name": "Ann",
+    "last_name": "Smith",
+    "age": 20
+  },
+  "@User, $user2": {
+    "first_name": "Bob",
+    "last_name": "Smith",
+    "age": 20
+  },
+
+  "@User": {
+    "first_name": "John",
+    "last_name": "Able",
+    "age": 55
+  },
+
+  "@Document": {
+    "owner": "$user2.user_id",
+    "data": "This is a document"
+  },
+
+  "@User, $user3": {
+    "first_name": "Sally",
+    "last_name": "Klein",
+    "age": 33,
+    "@Document": {
+      "owner": "$user3.user_id",
+      "data": "Sally's document"
+    }
+  },
+
+  "@User, $user4": {
+    "first_name": "Jackie",
+    "last_name": "Chen",
+    "age": 25,
+    "@Document": [
+      {
+        "owner": "$user4.user_id",
+        "data": "list data 1"
+      },
+      {
+        "owner": "$user4.user_id",
+        "data": "list data 2"
+      }
+    ]
+  }
+}
