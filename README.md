@@ -277,45 +277,57 @@ We can write this more concisely, though, if we don't need documents to be named
 ### Nested Objects
 
 Pretend we have two users, Sally and Bob, who each have three documents.  Using the lessons of the previous subsection,
-we might write a fixture file like this:
+we might write a fixture file like this (note, we will write the json is a slightly more compressed way, since our fixture
+file is getting a bit long):
 
 ```json
 {
-  "@User, $sally": {
-    "name": "Sally Mae",
-    "age": 25
-  },
-  "@User, $bob": {
-    "name": "Bob Be",
-    "age": 52
-  },
+  "@User, $sally": { "name": "Sally Mae", "age": 25 },
+  "@User, $bob": { "name": "Bob Be","age": 52 },
   "@Document": [
-    {
-      "owner_id": "$sally.user_id",
-      "data": "document1"
-    },
-    {
-      "owner_id": "$sally.user_id",
-      "data": "document2"
-    },
-    {
-      "owner_id": "$sally.user_id",
-      "data": "document3"
-    },
-    {
-      "owner_id": "$bob.user_id",
-      "data": "document4"
-    },
-    {
-      "owner_id": "$bob.user_id",
-      "data": "document5"
-    },
-    {
-      "owner_id": "$bob.user_id",
-      "data": "document6"
-    }
+    { "owner_id": "$sally.user_id", "data": "document1" },
+    { "owner_id": "$sally.user_id", "data": "document2" },
+    { "owner_id": "$sally.user_id", "data": "document3" },
+    { "owner_id": "$bob.user_id", "data": "document4" },
+    { "owner_id": "$bob.user_id", "data": "document5" },
+    { "owner_id": "$bob.user_id", "data": "document6" }
   ]
 }
 ```
 
 This works just fine, but one might imagine that, as fixture files get large, using one long list to specify all 
+documents might get a bit disorganized.  To address this problem, we jfixture allows objects to be nested within one 
+another.  Using this mechanism, we can rewrite the above file as:
+
+```json
+{
+  "@User, $sally": {
+    "name": "Sally Mae",
+    "age": 25,
+    "@Document": [
+     {"owner_id": "$sally.user_id", "data": "document1"},
+     {"owner_id": "$sally.user_id", "data": "document2"},
+     {"owner_id": "$sally.user_id", "data": "document3"},
+    ]
+  },
+  "@User, $bob": {
+    "name": "Bob Be",
+    "age": 52,
+    "@Document": [
+     {"owner_id": "$bob.user_id", "data": "document4"},
+     {"owner_id": "$bob.user_id", "data": "document5"},
+     {"owner_id": "$bob.user_id", "data": "document6"},
+    ]
+  }
+}
+```
+
+Note that writing the fixture file in this way doesn't change anything about the way it is processed; this is simply
+a tool to make the fixture file easier to understand, which is useful when writing and debugging large fixture files.
+
+# Insecurity
+
+There are many issues with this system, a small fraction of which I am aware of.  A prominent example is exception handling
+which is currently exceptionally poor.  One day I might fix this and other issues (pull requests are welcome).  My primary
+motivation for publishing this is simply to share some ideas I had for implementing a simple framework that is actually
+useful.
