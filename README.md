@@ -132,7 +132,7 @@ The jfixture language is straight forward.  Let's write a JSON file ("/path/to/s
 of the language.  We will assume that we have a simple ORM (like the one described above) that is used to describe 
 users and documents:
 
-```python3
+```python
 from simpleorm import *
 
 class User(Model):
