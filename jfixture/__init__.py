@@ -14,7 +14,7 @@ class ModelAdapter(object):
         Install model in database.  A ModelAdapter for MySQL, for example, would create a table.
         :return: None
         """
-        raise NotImplemented()
+        pass
 
     @staticmethod
     def install_model_instance(model, **kwargs):
@@ -38,6 +38,7 @@ class ModelAdapter(object):
         Remove model from the database. A ModelAdapter for Mysql, for example, would drop a table.
         :return: None
         """
+        pass
 
     @staticmethod
     def get_attribute(instance, attribute):
