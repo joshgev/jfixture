@@ -96,6 +96,10 @@ user.delete() # delete from DB
 print("The user's name is {}".format(user.name))
 ```
 
+As an aside: this is actually [simpleorm](https://github.com/joshgev/simpleorm), which is a toy ORM that I wrote for testing and demonstration of jfixture.  Outside of its utility for this project, it might be a educational to look it 
+over to get an idea of how things like SQLAlchemy or Django ORM do some of the things which to me seemed so magical
+when I first used them.  Specifically, it is a solid example of why one might use metaprogramming :).
+
 Using this ORM, our methods of install_model_instance and clear_instance will look like this:
 
 ```python
@@ -119,8 +123,8 @@ def get_attribute(instance, attribute):
   return getattr(instance, attribute):
 ```
 
-The test directory contains a working example of a full implementation of ModelAdapter using a 
-[simple orm I wrote to ](https://github.com/joshgev/simpleorm) demonstrate the system and to test it.
+The test directory contains a working example of a full implementation of ModelAdapter using 
+[simpleorm](https://github.com/joshgev/simpleorm) to demonstrate the system and to test it.
 
 ## jfixture language
 
