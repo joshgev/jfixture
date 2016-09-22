@@ -296,7 +296,7 @@ file is getting a bit long):
 ```
 
 This works just fine, but one might imagine that, as fixture files get large, using one long list to specify all 
-documents might get a bit disorganized.  To address this problem, we jfixture allows objects to be nested within one 
+documents might get a bit disorganized.  To address this problem, jfixture allows objects to be nested within one 
 another.  Using this mechanism, we can rewrite the above file as:
 
 ```json
